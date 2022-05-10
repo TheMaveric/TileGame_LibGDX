@@ -1,0 +1,720 @@
+
+textureAtlas.png
+size: 4096, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 197, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+attack
+  rotate: false
+  xy: 261, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+badlands
+  rotate: false
+  xy: 1021, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+badlandsHills
+  rotate: false
+  xy: 461, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+badlandsPlateau
+  rotate: false
+  xy: 349, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+beach
+  rotate: false
+  xy: 573, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+boundingBox
+  rotate: false
+  xy: 165, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+button
+  rotate: false
+  xy: 3832, 104
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+button_down
+  rotate: false
+  xy: 125, 39
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cactus
+  rotate: false
+  xy: 3704, 64
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+deadbush
+  rotate: false
+  xy: 3768, 0
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+deepWater
+  rotate: false
+  xy: 2925, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+desert
+  rotate: false
+  xy: 2813, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+desertHills
+  rotate: false
+  xy: 909, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+flower
+  rotate: false
+  xy: 3704, 0
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+forest
+  rotate: false
+  xy: 2141, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+frozenDeepWater
+  rotate: false
+  xy: 3037, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+frozenShallowWater
+  rotate: false
+  xy: 3482, 63
+  size: 111, 65
+  orig: 111, 65
+  offset: 0, 0
+  index: -1
+grass
+  rotate: false
+  xy: 3768, 64
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+heart
+  rotate: false
+  xy: 3832, 0
+  size: 9, 8
+  orig: 9, 8
+  offset: 0, 0
+  index: -1
+iceSpikes
+  rotate: false
+  xy: 2477, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+inventory_slot
+  rotate: false
+  xy: 24, 9
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+jungle
+  rotate: false
+  xy: 1469, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+jungleHills
+  rotate: false
+  xy: 2589, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+left
+  rotate: false
+  xy: 3832, 72
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+left
+  rotate: false
+  xy: 277, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+left
+  rotate: false
+  xy: 4048, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+mountains
+  rotate: false
+  xy: 1805, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+particle
+  rotate: false
+  xy: 48, 17
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+particle
+  rotate: false
+  xy: 96, 17
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+particle
+  rotate: false
+  xy: 3952, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+particle
+  rotate: false
+  xy: 293, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 6
+particle
+  rotate: false
+  xy: 341, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+particle
+  rotate: false
+  xy: 405, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 5
+pebble
+  rotate: false
+  xy: 3841, 0
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+plain
+  rotate: false
+  xy: 3593, 63
+  size: 111, 65
+  orig: 111, 65
+  offset: 0, 0
+  index: -1
+projectile
+  rotate: false
+  xy: 125, 33
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+rainforest
+  rotate: false
+  xy: 1357, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+rainforestHills
+  rotate: false
+  xy: 2253, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+rainforestMountains
+  rotate: false
+  xy: 1693, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+redtrans
+  rotate: false
+  xy: 0, 0
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+right
+  rotate: false
+  xy: 181, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+right
+  rotate: false
+  xy: 229, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+right
+  rotate: false
+  xy: 357, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+rock
+  rotate: false
+  xy: 3872, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+savanna
+  rotate: false
+  xy: 237, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+savannaPlateau
+  rotate: false
+  xy: 1245, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+shallowWater
+  rotate: false
+  xy: 1581, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+slime
+  rotate: false
+  xy: 149, 39
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+slime_left
+  rotate: false
+  xy: 3856, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 7
+slime_left
+  rotate: false
+  xy: 3888, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+slime_left
+  rotate: false
+  xy: 3888, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+slime_left
+  rotate: false
+  xy: 3920, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+slime_left
+  rotate: false
+  xy: 245, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 6
+slime_left
+  rotate: false
+  xy: 245, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 8
+slime_left
+  rotate: false
+  xy: 309, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+slime_left
+  rotate: false
+  xy: 4080, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 5
+slime_right
+  rotate: false
+  xy: 149, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+slime_right
+  rotate: false
+  xy: 64, 17
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 8
+slime_right
+  rotate: false
+  xy: 64, 17
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 6
+slime_right
+  rotate: false
+  xy: 3904, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 5
+slime_right
+  rotate: false
+  xy: 3832, 8
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+slime_right
+  rotate: false
+  xy: 3832, 8
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+slime_right
+  rotate: false
+  xy: 3984, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 7
+slime_right
+  rotate: false
+  xy: 4064, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+slingshot
+  rotate: false
+  xy: 3856, 104
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+small_particle
+  rotate: false
+  xy: 3832, 40
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+small_particle
+  rotate: false
+  xy: 4016, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+small_particle
+  rotate: false
+  xy: 389, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+snowyBeach
+  rotate: false
+  xy: 685, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+snowyMountains
+  rotate: false
+  xy: 125, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+snowyTaiga
+  rotate: false
+  xy: 3260, 63
+  size: 111, 65
+  orig: 111, 65
+  offset: 0, 0
+  index: -1
+snowyTaigaHills
+  rotate: false
+  xy: 3371, 63
+  size: 111, 65
+  orig: 111, 65
+  offset: 0, 0
+  index: -1
+snowyTaigaMountains
+  rotate: false
+  xy: 797, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+snowyTree
+  rotate: false
+  xy: 325, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+snowyTundra
+  rotate: false
+  xy: 2029, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+special_slot
+  rotate: false
+  xy: 0, 9
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+standing
+  rotate: false
+  xy: 3968, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+attack
+  rotate: false
+  xy: 3968, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+standing
+  rotate: false
+  xy: 373, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+stick
+  rotate: false
+  xy: 0, 1
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+swamp
+  rotate: false
+  xy: 1133, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+swampHills
+  rotate: false
+  xy: 2701, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+swim_left
+  rotate: false
+  xy: 213, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+swim_left
+  rotate: false
+  xy: 4032, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+swim_left
+  rotate: false
+  xy: 421, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+swim_right
+  rotate: false
+  xy: 3832, 24
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+swim_right
+  rotate: false
+  xy: 4000, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+swim_right
+  rotate: false
+  xy: 437, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+taiga
+  rotate: false
+  xy: 3149, 63
+  size: 111, 65
+  orig: 111, 65
+  offset: 0, 0
+  index: -1
+taigaHills
+  rotate: false
+  xy: 1917, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+taigaMountains
+  rotate: false
+  xy: 2365, 63
+  size: 112, 65
+  orig: 112, 65
+  offset: 0, 0
+  index: -1
+tree
+  rotate: false
+  xy: 80, 17
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+water_t
+  rotate: false
+  xy: 3832, 88
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 5
+water_t
+  rotate: false
+  xy: 3832, 88
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 6
+water_t
+  rotate: false
+  xy: 3832, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+water_t
+  rotate: false
+  xy: 3832, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+water_t
+  rotate: false
+  xy: 3936, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+water_t
+  rotate: false
+  xy: 3936, 112
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+white
+  rotate: false
+  xy: 2, 0
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+whitetrans
+  rotate: false
+  xy: 1, 0
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+window_bg
+  rotate: false
+  xy: 0, 33
+  size: 125, 95
+  orig: 125, 95
+  offset: 0, 0
+  index: -1
