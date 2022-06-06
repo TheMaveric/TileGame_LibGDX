@@ -316,6 +316,32 @@ public class World{
             //}
         }
     }
+    public void renderWave(int l,int j,int k, int tileIndex,int x,int y)
+    {
+        try {
+            int tileIndexRight=t[l].biome[j+1][k];
+            int tileIndexLeft=t[l].biome[j-1][k];
+            int tileIndexDown=t[l].biome[j][k-1];
+            int tileIndexUp=t[l].biome[j][k+1];
+            if (tileIndex == 0 || tileIndex == 1) {
+                if (tileIndexUp != 0 && tileIndexUp != 1)
+                    batch.draw(texture.water_t.getKeyFrame(animationTime), (x + k) * Tile.TILEWIDTH, (y + j) * Tile.TILEHEIGHT,
+                            0, 0, Tile.TILEWIDTH, Tile.TILEHEIGHT, 1, 1, 0, true);
+                if (tileIndexRight != 0 && tileIndexRight != 1)
+                    batch.draw(texture.water_t.getKeyFrame(animationTime), (x + k) * Tile.TILEWIDTH+Tile.TILEWIDTH, (y + j) * Tile.TILEHEIGHT,
+                            0, 0, Tile.TILEWIDTH, Tile.TILEHEIGHT, 1, 1, 90, true);
+                if (tileIndexDown != 0 && tileIndexDown != 1)
+                    batch.draw(texture.water_t.getKeyFrame(animationTime), (x + k) * Tile.TILEWIDTH+Tile.TILEWIDTH, (y + j) * Tile.TILEHEIGHT+Tile.TILEHEIGHT,0, 0, Tile.TILEWIDTH, Tile.TILEHEIGHT, 1, 1, 180, true);
+                if (tileIndexLeft != 0 && tileIndexLeft != 1)
+                    batch.draw(texture.water_t.getKeyFrame(animationTime), (x + k) * Tile.TILEWIDTH, (y + j) * Tile.TILEHEIGHT+Tile.TILEHEIGHT,
+                            0, 0, Tile.TILEWIDTH, Tile.TILEHEIGHT, 1, 1, 270, true);
+            }
+        }
+        catch(Exception e)
+        {
+
+        }
+    }
     public void render(Batch batch,float deltaTime) {
         int paddingX=4*Tile.TILEWIDTH;
         int paddingY=4*Tile.TILEHEIGHT;
@@ -331,37 +357,14 @@ public class World{
                 for (int j = 0; j < Terrain.height; j++) {
                     int xx=(x + k) * Tile.TILEWIDTH;
                     int yy= (y + j) * Tile.TILEHEIGHT;
-                    //if(yy >= xStart && yy <= xEnd && xx >= yStart && xx <= yEnd) {
+                    if(yy >= xStart && yy <= xEnd && xx >= yStart && xx <= yEnd) {
                         int tileIndex = t[l].biome[j][k];
                         int height=-(int)t[l].islandArr[j][k];
                         //batch.draw(texture.map.get(tileIndex), (int)(x + k) * Tile.TILEWIDTH,(int)(y + j) * Tile.TILEHEIGHT);
                         Vector2 pt=new Vector2((x + k) * Tile.TILEWIDTH,(y + j) * Tile.TILEHEIGHT);
                         batch.draw(texture.map.get(tileIndex),pt.x,(float)(pt.y));
-                    /*try {
-                        int tileIndexRight=t[l].biome[j+1][k];
-                        int tileIndexLeft=t[l].biome[j-1][k];
-                        int tileIndexDown=t[l].biome[j][k-1];
-                        int tileIndexUp=t[l].biome[j][k+1];
-                        if (tileIndex == 0 || tileIndex == 1) {
-                            if (tileIndexUp != 0 && tileIndexUp != 1)
-                                batch.draw(texture.water_t.getKeyFrame(animationTime), (x + k) * Tile.TILEWIDTH, (y + j) * Tile.TILEHEIGHT,
-                                        0, 0, Tile.TILEWIDTH, Tile.TILEHEIGHT, 1, 1, 0, true);
-                            if (tileIndexRight != 0 && tileIndexRight != 1)
-                                batch.draw(texture.water_t.getKeyFrame(animationTime), (x + k) * Tile.TILEWIDTH+Tile.TILEWIDTH, (y + j) * Tile.TILEHEIGHT,
-                                        0, 0, Tile.TILEWIDTH, Tile.TILEHEIGHT, 1, 1, 90, true);
-                            if (tileIndexDown != 0 && tileIndexDown != 1)
-                                batch.draw(texture.water_t.getKeyFrame(animationTime), (x + k) * Tile.TILEWIDTH+Tile.TILEWIDTH, (y + j) * Tile.TILEHEIGHT+Tile.TILEHEIGHT*//*-Tile.TILEHEIGHT*//*,
-                                        0, 0, Tile.TILEWIDTH, Tile.TILEHEIGHT, 1, 1, 180, true);
-                            if (tileIndexLeft != 0 && tileIndexLeft != 1)
-                                batch.draw(texture.water_t.getKeyFrame(animationTime), (x + k) * Tile.TILEWIDTH, (y + j) * Tile.TILEHEIGHT+Tile.TILEHEIGHT,
-                                        0, 0, Tile.TILEWIDTH, Tile.TILEHEIGHT, 1, 1, 270, true);
-                        }
+                        renderWave(l,j,k,tileIndex,x,y);
                     }
-                    catch(Exception e)
-                    {
-
-                    }*/
-                    //}
                 }
             }
             /*for (int k = 0; k < Terrain.width; k++) {
@@ -371,7 +374,12 @@ public class World{
                 }
             }*/
             //draw border
-            /*for (int k = 0; k < Terrain.width; k++) {
+            //renderBorder(x,y);
+        }
+    }
+    void renderBorder(int x,int y)
+    {
+       for (int k = 0; k < Terrain.width; k++) {
                 if(k==0)
                     batch.draw(texture.button,(x)*Tile.TILEWIDTH,(y)*Tile.TILEHEIGHT);
                 for (int j = 0; j < Terrain.height; j++) {
@@ -382,8 +390,7 @@ public class World{
                 }
                 if(k==Terrain.width-1)
                     batch.draw(texture.button,(x+k)*Tile.TILEWIDTH,(y+Terrain.height)*Tile.TILEHEIGHT);
-            }*/
-        }
+            }
     }
     public Vector2 cartToISO(Vector2 point)
     {
