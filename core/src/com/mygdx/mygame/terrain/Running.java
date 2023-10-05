@@ -1,7 +1,5 @@
 package com.mygdx.mygame.terrain;
 
-import java.util.Arrays;
-
 public class Running implements Runnable {
     int x, y;
     double arr[][];
@@ -33,8 +31,8 @@ public class Running implements Runnable {
             //ImageIO.write(river, "jpg", new File("D:\\Map\\Output\\River.jpg"));
         }
     }
-    public double[][] getArr()
-    {
+
+    public double[][] getArr() {
         return arr;
     }
 }

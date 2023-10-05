@@ -26,8 +26,7 @@ public class MenuScreen implements Screen {
     private TextureAtlas atlas;
     protected Skin skin;
 
-    public MenuScreen()
-    {
+    public MenuScreen() {
         atlas = TileTexture.atlas;
         skin = new Skin(Gdx.files.internal("skin.json"), atlas);
         batch = new SpriteBatch();
@@ -59,13 +58,13 @@ public class MenuScreen implements Screen {
         TextButton exitButton = new TextButton("Exit", skin);
 
         //Add listeners to buttons
-        playButton.addListener(new ClickListener(){
+        playButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ((Game)Gdx.app.getApplicationListener()).setScreen(new GameScreen());
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new GameScreen());
             }
         });
-        exitButton.addListener(new ClickListener(){
+        exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.exit();

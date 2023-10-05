@@ -1,18 +1,19 @@
 package com.mygdx.mygame.terrain; /**
  * K.jpg's OpenSimplex 2, faster variant ("Fast Simplex-Style Noise")
  * With area generators.
- *
+ * <p>
  * - 2D is standard simplex implemented using a lookup table.
  * - 3D is "Re-oriented 4-point BCC noise" which constructs an
- *   isomorphic BCC lattice in a much different way than usual.
- *
+ * isomorphic BCC lattice in a much different way than usual.
+ * <p>
  * Multiple versions of each function are provided. See the
  * documentation above each, for more info.
  */
-import java.util.Queue;
-import java.util.LinkedList;
-import java.util.Set;
+
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
 
 public class OpenSimplex2F {
 
@@ -32,7 +33,7 @@ public class OpenSimplex2F {
             source[i] = i;
         for (int i = PSIZE - 1; i >= 0; i--) {
             seed = seed * 6364136223846793005L + 1442695040888963407L;
-            int r = (int)((seed + 31) % (i + 1));
+            int r = (int) ((seed + 31) % (i + 1));
             if (r < 0)
                 r += (i + 1);
             perm[i] = source[r];
@@ -84,7 +85,7 @@ public class OpenSimplex2F {
         double xsi = xs - xsb, ysi = ys - ysb;
 
         // Index to point list
-        int index = (int)((ysi - xsi) / 2 + 1) * 3;
+        int index = (int) ((ysi - xsi) / 2 + 1) * 3;
 
         double ssi = (xsi + ysi) * -0.211324865405187;
         double xi = xsi + ssi, yi = ysi + ssi;
@@ -162,7 +163,8 @@ public class OpenSimplex2F {
         double xz = x + z;
         double s2 = xz * -0.211324865405187;
         double yy = y * 0.577350269189626;
-        double xr = x + s2 - yy; double zr = z + s2 - yy;
+        double xr = x + s2 - yy;
+        double zr = z + s2 - yy;
         double yr = xz * 0.577350269189626 + yy;
 
         // Evaluate both lattices to form a BCC lattice.
@@ -183,7 +185,7 @@ public class OpenSimplex2F {
 
         // Identify which octant of the cube we're in. This determines which cell
         // in the other cubic lattice we're in, and also narrows down one point on each.
-        int xht = (int)(xri + 0.5), yht = (int)(yri + 0.5), zht = (int)(zri + 0.5);
+        int xht = (int) (xri + 0.5), yht = (int) (yri + 0.5), zht = (int) (zri + 0.5);
         int index = (xht << 0) | (yht << 1) | (zht << 2);
 
         // Point contributions
@@ -251,7 +253,8 @@ public class OpenSimplex2F {
         // For some lattices, you might need to try a handful of points in the cell,
         // or flip a couple of coordinates, to guarantee it or a neighbor contributes.
         // For An* lattices, the base coordinate seems fine.
-        double x0f = x0Skipped * context.xFrequency; double y0f = y0Skipped * context.yFrequency;
+        double x0f = x0Skipped * context.xFrequency;
+        double y0f = y0Skipped * context.yFrequency;
         double x0s = context.orientation.s00 * x0f + context.orientation.s01 * y0f;
         double y0s = context.orientation.s10 * x0f + context.orientation.s11 * y0f;
         int x0sb = fastFloor(x0s), y0sb = fastFloor(y0s);
@@ -272,8 +275,10 @@ public class OpenSimplex2F {
             double gOff = 0.5 * (gx + gy); // to correct for (0.5, 0.5)-offset kernel
 
             // Contribution kernel bounds
-            int yy0 = destPointY - scaledRadiusY; if (yy0 < y0Skipped) yy0 = y0Skipped;
-            int yy1 = destPointY + scaledRadiusY; if (yy1 > y0 + height) yy1 = y0 + height;
+            int yy0 = destPointY - scaledRadiusY;
+            if (yy0 < y0Skipped) yy0 = y0Skipped;
+            int yy1 = destPointY + scaledRadiusY;
+            if (yy1 > y0 + height) yy1 = y0 + height;
 
             // For each row of the contribution circle,
             for (int yy = yy0; yy < yy1; yy++) {
@@ -282,8 +287,10 @@ public class OpenSimplex2F {
 
                 // Set up bounds so we only loop over what we need to
                 int thisScaledRadiusX = context.kernelBounds[ky];
-                int xx0 = destPointX - thisScaledRadiusX; if (xx0 < x0Skipped) xx0 = x0Skipped;
-                int xx1 = destPointX + thisScaledRadiusX; if (xx1 > x0 + width) xx1 = x0 + width;
+                int xx0 = destPointX - thisScaledRadiusX;
+                if (xx0 < x0Skipped) xx0 = x0Skipped;
+                int xx1 = destPointX + thisScaledRadiusX;
+                if (xx1 > x0 + width) xx1 = x0 + width;
 
                 // For each point on that row
                 for (int xx = xx0; xx < xx1; xx++) {
@@ -377,8 +384,10 @@ public class OpenSimplex2F {
             double gOff = 0.5 * (gx + gy + gz); // to correct for (0.5, 0.5, 0.5)-offset kernel
 
             // Contribution kernel bounds.
-            int zz0 = destPointZ - scaledRadiusZ; if (zz0 < z0Skipped) zz0 = z0Skipped;
-            int zz1 = destPointZ + scaledRadiusZ; if (zz1 > z0 + depth) zz1 = z0 + depth;
+            int zz0 = destPointZ - scaledRadiusZ;
+            if (zz0 < z0Skipped) zz0 = z0Skipped;
+            int zz1 = destPointZ + scaledRadiusZ;
+            if (zz1 > z0 + depth) zz1 = z0 + depth;
 
             // For each x/y slice of the contribution sphere,
             for (int zz = zz0; zz < zz1; zz++) {
@@ -387,8 +396,10 @@ public class OpenSimplex2F {
 
                 // Set up bounds so we only loop over what we need to
                 int thisScaledRadiusY = context.kernelBoundsY[kz];
-                int yy0 = destPointY - thisScaledRadiusY; if (yy0 < y0Skipped) yy0 = y0Skipped;
-                int yy1 = destPointY + thisScaledRadiusY; if (yy1 > y0 + height) yy1 = y0 + height;
+                int yy0 = destPointY - thisScaledRadiusY;
+                if (yy0 < y0Skipped) yy0 = y0Skipped;
+                int yy1 = destPointY + thisScaledRadiusY;
+                if (yy1 > y0 + height) yy1 = y0 + height;
 
                 // For each row of the contribution circle,
                 for (int yy = yy0; yy < yy1; yy++) {
@@ -397,8 +408,10 @@ public class OpenSimplex2F {
 
                     // Set up bounds so we only loop over what we need to
                     int thisScaledRadiusX = context.kernelBoundsX[kz][ky];
-                    int xx0 = destPointX - thisScaledRadiusX; if (xx0 < x0Skipped) xx0 = x0Skipped;
-                    int xx1 = destPointX + thisScaledRadiusX; if (xx1 > x0 + width) xx1 = x0 + width;
+                    int xx0 = destPointX - thisScaledRadiusX;
+                    if (xx0 < x0Skipped) xx0 = x0Skipped;
+                    int xx1 = destPointX + thisScaledRadiusX;
+                    if (xx1 > x0 + width) xx1 = x0 + width;
 
                     // For each point on that row
                     for (int xx = xx0; xx < xx1; xx++) {
@@ -440,7 +453,7 @@ public class OpenSimplex2F {
      */
 
     private static int fastFloor(double x) {
-        int xi = (int)x;
+        int xi = (int) x;
         return x < xi ? xi - 1 : xi;
     }
 
@@ -450,14 +463,20 @@ public class OpenSimplex2F {
 
     private static final LatticePoint2D[] LOOKUP_2D;
     private static final LatticePoint3D[] LOOKUP_3D;
+
     static {
         LOOKUP_2D = new LatticePoint2D[2 * 3];
         LOOKUP_3D = new LatticePoint3D[8];
 
         for (int i = 0; i < 2; i++) {
             int i1, j1;
-            if ((i & 1) == 0) { i1 = 1; j1 = 0; }
-            else { i1 = 0; j1 = 1; }
+            if ((i & 1) == 0) {
+                i1 = 1;
+                j1 = 0;
+            } else {
+                i1 = 0;
+                j1 = 1;
+            }
             LOOKUP_2D[i * 3 + 0] = new LatticePoint2D(0, 0);
             LOOKUP_2D[i * 3 + 1] = new LatticePoint2D(1, 1);
             LOOKUP_2D[i * 3 + 2] = new LatticePoint2D(i1, j1);
@@ -465,8 +484,12 @@ public class OpenSimplex2F {
 
         for (int i = 0; i < 8; i++) {
             int i1, j1, k1, i2, j2, k2;
-            i1 = (i >> 0) & 1; j1 = (i >> 1) & 1; k1 = (i >> 2) & 1;
-            i2 = i1 ^ 1; j2 = j1 ^ 1; k2 = k1 ^ 1;
+            i1 = (i >> 0) & 1;
+            j1 = (i >> 1) & 1;
+            k1 = (i >> 2) & 1;
+            i2 = i1 ^ 1;
+            j2 = j1 ^ 1;
+            k2 = k1 ^ 1;
 
             // The two points within this octant, one from each of the two cubic half-lattices.
             LatticePoint3D c0 = new LatticePoint3D(i1, j1, k1, 0);
@@ -488,13 +511,17 @@ public class OpenSimplex2F {
 
             // Once we find one on the first half-lattice, the rest are out.
             // In addition, knowing c2 rules out c5.
-            c2.nextOnFailure = c3; c2.nextOnSuccess = c6;
-            c3.nextOnFailure = c4; c3.nextOnSuccess = c5;
+            c2.nextOnFailure = c3;
+            c2.nextOnSuccess = c6;
+            c3.nextOnFailure = c4;
+            c3.nextOnSuccess = c5;
             c4.nextOnFailure = c4.nextOnSuccess = c5;
 
             // Once we find one on the second half-lattice, the rest are out.
-            c5.nextOnFailure = c6; c5.nextOnSuccess = null;
-            c6.nextOnFailure = c7; c6.nextOnSuccess = null;
+            c5.nextOnFailure = c6;
+            c5.nextOnSuccess = null;
+            c6.nextOnFailure = c7;
+            c6.nextOnSuccess = null;
             c7.nextOnFailure = c7.nextOnSuccess = null;
 
             LOOKUP_3D[i] = c0;
@@ -503,27 +530,29 @@ public class OpenSimplex2F {
 
     // Hexagon surrounding each vertex.
     private static final int[][] NEIGHBOR_MAP_2D = {
-            { 1, 0 }, { 1, 1 }, { 0, 1 }, { 0, -1 }, { -1, -1 }, { -1, 0 }
+            {1, 0}, {1, 1}, {0, 1}, {0, -1}, {-1, -1}, {-1, 0}
     };
 
     // Cube surrounding each vertex.
     // Alternates between half-lattices.
     private static final int[][][] NEIGHBOR_MAP_3D = {
             {
-                    { 1024, 1024, 1024 }, { 1025, 1024, 1024 }, { 1024, 1025, 1024 }, { 1025, 1025, 1024 },
-                    { 1024, 1024, 1025 }, { 1025, 1024, 1025 }, { 1024, 1025, 1025 }, { 1025, 1025, 1025 }
+                    {1024, 1024, 1024}, {1025, 1024, 1024}, {1024, 1025, 1024}, {1025, 1025, 1024},
+                    {1024, 1024, 1025}, {1025, 1024, 1025}, {1024, 1025, 1025}, {1025, 1025, 1025}
             },
             {
-                    { -1024, -1024, -1024 }, { -1025, -1024, 1024 }, { -1024, -1025, -1024 }, { -1025, -1025, -1024 },
-                    { -1024, -1024, -1025 }, { -1025, -1024, -1025 }, { -1024, -1025, -1025 }, { -1025, -1025, 1025 }
+                    {-1024, -1024, -1024}, {-1025, -1024, 1024}, {-1024, -1025, -1024}, {-1025, -1025, -1024},
+                    {-1024, -1024, -1025}, {-1025, -1024, -1025}, {-1024, -1025, -1025}, {-1025, -1025, 1025}
             },
     };
 
     private static class LatticePoint2D {
         int xsv, ysv;
         double dx, dy;
+
         public LatticePoint2D(int xsv, int ysv) {
-            this.xsv = xsv; this.ysv = ysv;
+            this.xsv = xsv;
+            this.ysv = ysv;
             double ssv = (xsv + ysv) * -0.211324865405187;
             this.dx = -xsv - ssv;
             this.dy = -ysv - ssv;
@@ -534,25 +563,34 @@ public class OpenSimplex2F {
         public double dxr, dyr, dzr;
         public int xrv, yrv, zrv;
         LatticePoint3D nextOnFailure, nextOnSuccess;
+
         public LatticePoint3D(int xrv, int yrv, int zrv, int lattice) {
-            this.dxr = -xrv + lattice * 0.5; this.dyr = -yrv + lattice * 0.5; this.dzr = -zrv + lattice * 0.5;
-            this.xrv = xrv + lattice * 1024; this.yrv = yrv + lattice * 1024; this.zrv = zrv + lattice * 1024;
+            this.dxr = -xrv + lattice * 0.5;
+            this.dyr = -yrv + lattice * 0.5;
+            this.dzr = -zrv + lattice * 0.5;
+            this.xrv = xrv + lattice * 1024;
+            this.yrv = yrv + lattice * 1024;
+            this.zrv = zrv + lattice * 1024;
         }
     }
 
     private static class AreaGenLatticePoint2D {
         int xsv, ysv;
         int destPointX, destPointY;
+
         public AreaGenLatticePoint2D(GenerateContext2D context, int xsv, int ysv) {
-            this.xsv = xsv; this.ysv = ysv;
+            this.xsv = xsv;
+            this.ysv = ysv;
 
             //Matrix multiplication for inverse rotation. Simplex skew transforms have always been shorthand for matrices.
-            this.destPointX = (int)Math.ceil((context.orientation.t00 * xsv + context.orientation.t01 * ysv) * context.xFrequencyInverse);
-            this.destPointY = (int)Math.ceil((context.orientation.t10 * xsv + context.orientation.t11 * ysv) * context.yFrequencyInverse);
+            this.destPointX = (int) Math.ceil((context.orientation.t00 * xsv + context.orientation.t01 * ysv) * context.xFrequencyInverse);
+            this.destPointY = (int) Math.ceil((context.orientation.t10 * xsv + context.orientation.t11 * ysv) * context.yFrequencyInverse);
         }
+
         public int hashCode() {
             return xsv * 7841 + ysv;
         }
+
         public boolean equals(Object obj) {
             if (!(obj instanceof AreaGenLatticePoint2D)) return false;
             AreaGenLatticePoint2D other = (AreaGenLatticePoint2D) obj;
@@ -563,8 +601,12 @@ public class OpenSimplex2F {
     private static class AreaGenLatticePoint3D {
         int xsv, ysv, zsv, lattice;
         int destPointX, destPointY, destPointZ;
+
         public AreaGenLatticePoint3D(GenerateContext3D context, int xsv, int ysv, int zsv, int lattice) {
-            this.xsv = xsv; this.ysv = ysv; this.zsv = zsv; this.lattice = lattice;
+            this.xsv = xsv;
+            this.ysv = ysv;
+            this.zsv = zsv;
+            this.lattice = lattice;
             double xr = (xsv - lattice * 1024.5);
             double yr = (ysv - lattice * 1024.5);
             double zr = (zsv - lattice * 1024.5);
@@ -579,13 +621,15 @@ public class OpenSimplex2F {
             double yrr = yr + qw * ty + (qz * tx - qx * tz);
             double zrr = zr + qw * tz + (qx * ty - qy * tx);
 
-            this.destPointX = (int)Math.ceil(xrr * context.xFrequencyInverse);
-            this.destPointY = (int)Math.ceil(yrr * context.yFrequencyInverse);
-            this.destPointZ = (int)Math.ceil(zrr * context.zFrequencyInverse);
+            this.destPointX = (int) Math.ceil(xrr * context.xFrequencyInverse);
+            this.destPointY = (int) Math.ceil(yrr * context.yFrequencyInverse);
+            this.destPointZ = (int) Math.ceil(zrr * context.zFrequencyInverse);
         }
+
         public int hashCode() {
             return xsv * 2122193 + ysv * 2053 + zsv * 2 + lattice;
         }
+
         public boolean equals(Object obj) {
             if (!(obj instanceof AreaGenLatticePoint3D)) return false;
             AreaGenLatticePoint3D other = (AreaGenLatticePoint3D) obj;
@@ -618,8 +662,8 @@ public class OpenSimplex2F {
             double preciseScaledRadiusY = Math.sqrt(0.5) * yFrequencyInverse;
 
             // 0.25 because we offset center by 0.5
-            this.scaledRadiusX = (int)Math.ceil(preciseScaledRadiusX + 0.25);
-            this.scaledRadiusY = (int)Math.ceil(preciseScaledRadiusY + 0.25);
+            this.scaledRadiusX = (int) Math.ceil(preciseScaledRadiusX + 0.25);
+            this.scaledRadiusY = (int) Math.ceil(preciseScaledRadiusY + 0.25);
 
             // So will these
             kernel = new double[scaledRadiusY/* * 2*/][];
@@ -627,7 +671,7 @@ public class OpenSimplex2F {
             for (int yy = 0; yy < scaledRadiusY * 2; yy++) {
 
                 // Pre-generate boundary of circle
-                kernelBounds[yy] = (int)Math.ceil(
+                kernelBounds[yy] = (int) Math.ceil(
                         Math.sqrt(1.0
                                 - (yy + 0.5 - scaledRadiusY) * (yy + 0.5 - scaledRadiusY) / (scaledRadiusY * scaledRadiusY)
                         ) * scaledRadiusX);
@@ -684,9 +728,9 @@ public class OpenSimplex2F {
             double preciseScaledRadiusZ = Math.sqrt(0.5) * zFrequencyInverse;
 
             // 0.25 because we offset center by 0.5
-            this.scaledRadiusX = (int)Math.ceil(preciseScaledRadiusX + 0.25);
-            this.scaledRadiusY = (int)Math.ceil(preciseScaledRadiusY + 0.25);
-            this.scaledRadiusZ = (int)Math.ceil(preciseScaledRadiusZ + 0.25);
+            this.scaledRadiusX = (int) Math.ceil(preciseScaledRadiusX + 0.25);
+            this.scaledRadiusY = (int) Math.ceil(preciseScaledRadiusY + 0.25);
+            this.scaledRadiusZ = (int) Math.ceil(preciseScaledRadiusZ + 0.25);
 
             // So will these
             kernel = new double[scaledRadiusZ * 2][][];
@@ -695,7 +739,7 @@ public class OpenSimplex2F {
             for (int zz = 0; zz < scaledRadiusZ * 2; zz++) {
 
                 // Pre-generate boundary of sphere
-                kernelBoundsY[zz] = (int)Math.ceil(
+                kernelBoundsY[zz] = (int) Math.ceil(
                         Math.sqrt(1.0 - (zz + 0.5 - scaledRadiusZ) * (zz + 0.5 - scaledRadiusZ)
                                 / (scaledRadiusZ * scaledRadiusZ)) * scaledRadiusY);
 
@@ -711,7 +755,7 @@ public class OpenSimplex2F {
                     for (int yy = 0; yy < scaledRadiusY * 2; yy++) {
 
                         // Pre-generate boundary of sphere
-                        kernelBoundsX[zz][yy] = (int)Math.ceil(
+                        kernelBoundsX[zz][yy] = (int) Math.ceil(
                                 Math.sqrt(1.0
                                         - (yy + 0.5 - scaledRadiusY) * (yy + 0.5 - scaledRadiusY) / (scaledRadiusY * scaledRadiusY)
                                         - (zz + 0.5 - scaledRadiusZ) * (zz + 0.5 - scaledRadiusZ) / (scaledRadiusZ * scaledRadiusZ)
@@ -759,8 +803,14 @@ public class OpenSimplex2F {
                                      double s00, double s01, double s10, double s11,
                                      double t00, double t01, double t10, double t11) {
             this.gradients = gradients;
-            this.s00 = s00; this.s01 = s01; this.s10 = s10; this.s11 = s11;
-            this.t00 = t00; this.t01 = t01; this.t10 = t10; this.t11 = t11;
+            this.s00 = s00;
+            this.s01 = s01;
+            this.s10 = s10;
+            this.s11 = s11;
+            this.t00 = t00;
+            this.t01 = t01;
+            this.t10 = t10;
+            this.t11 = t11;
         }
     }
 
@@ -775,7 +825,10 @@ public class OpenSimplex2F {
 
         private LatticeOrientation3D(Grad3[] gradients, double qx, double qy, double qz, double qw) {
             this.gradients = gradients;
-            this.qx = qx; this.qy = qy; this.qz = qz; this.qw = qw;
+            this.qx = qx;
+            this.qy = qy;
+            this.qz = qz;
+            this.qw = qw;
         }
     }
 
@@ -785,15 +838,20 @@ public class OpenSimplex2F {
 
     public static class Grad2 {
         double dx, dy;
+
         public Grad2(double dx, double dy) {
-            this.dx = dx; this.dy = dy;
+            this.dx = dx;
+            this.dy = dy;
         }
     }
 
     public static class Grad3 {
         double dx, dy, dz;
+
         public Grad3(double dx, double dy, double dz) {
-            this.dx = dx; this.dy = dy; this.dz = dz;
+            this.dx = dx;
+            this.dy = dy;
+            this.dz = dz;
         }
     }
 
@@ -801,39 +859,41 @@ public class OpenSimplex2F {
     public static final double N3 = 0.030485933181293584;
     private static final Grad2[] GRADIENTS_2D, GRADIENTS_2D_X_BEFORE_Y;
     private static final Grad3[] GRADIENTS_3D, GRADIENTS_3D_CLASSIC, GRADIENTS_3D_XY_BEFORE_Z, GRADIENTS_3D_XZ_BEFORE_Y;
+
     static {
 
         GRADIENTS_2D = new Grad2[PSIZE];
         GRADIENTS_2D_X_BEFORE_Y = new Grad2[PSIZE];
         Grad2[] grad2 = {
-                new Grad2( 0.130526192220052,  0.99144486137381),
-                new Grad2( 0.38268343236509,   0.923879532511287),
-                new Grad2( 0.608761429008721,  0.793353340291235),
-                new Grad2( 0.793353340291235,  0.608761429008721),
-                new Grad2( 0.923879532511287,  0.38268343236509),
-                new Grad2( 0.99144486137381,   0.130526192220051),
-                new Grad2( 0.99144486137381,  -0.130526192220051),
-                new Grad2( 0.923879532511287, -0.38268343236509),
-                new Grad2( 0.793353340291235, -0.60876142900872),
-                new Grad2( 0.608761429008721, -0.793353340291235),
-                new Grad2( 0.38268343236509,  -0.923879532511287),
-                new Grad2( 0.130526192220052, -0.99144486137381),
+                new Grad2(0.130526192220052, 0.99144486137381),
+                new Grad2(0.38268343236509, 0.923879532511287),
+                new Grad2(0.608761429008721, 0.793353340291235),
+                new Grad2(0.793353340291235, 0.608761429008721),
+                new Grad2(0.923879532511287, 0.38268343236509),
+                new Grad2(0.99144486137381, 0.130526192220051),
+                new Grad2(0.99144486137381, -0.130526192220051),
+                new Grad2(0.923879532511287, -0.38268343236509),
+                new Grad2(0.793353340291235, -0.60876142900872),
+                new Grad2(0.608761429008721, -0.793353340291235),
+                new Grad2(0.38268343236509, -0.923879532511287),
+                new Grad2(0.130526192220052, -0.99144486137381),
                 new Grad2(-0.130526192220052, -0.99144486137381),
-                new Grad2(-0.38268343236509,  -0.923879532511287),
+                new Grad2(-0.38268343236509, -0.923879532511287),
                 new Grad2(-0.608761429008721, -0.793353340291235),
                 new Grad2(-0.793353340291235, -0.608761429008721),
                 new Grad2(-0.923879532511287, -0.38268343236509),
-                new Grad2(-0.99144486137381,  -0.130526192220052),
-                new Grad2(-0.99144486137381,   0.130526192220051),
-                new Grad2(-0.923879532511287,  0.38268343236509),
-                new Grad2(-0.793353340291235,  0.608761429008721),
-                new Grad2(-0.608761429008721,  0.793353340291235),
-                new Grad2(-0.38268343236509,   0.923879532511287),
-                new Grad2(-0.130526192220052,  0.99144486137381)
+                new Grad2(-0.99144486137381, -0.130526192220052),
+                new Grad2(-0.99144486137381, 0.130526192220051),
+                new Grad2(-0.923879532511287, 0.38268343236509),
+                new Grad2(-0.793353340291235, 0.608761429008721),
+                new Grad2(-0.608761429008721, 0.793353340291235),
+                new Grad2(-0.38268343236509, 0.923879532511287),
+                new Grad2(-0.130526192220052, 0.99144486137381)
         };
         Grad2[] grad2XBeforeY = new Grad2[grad2.length];
         for (int i = 0; i < grad2.length; i++) {
-            grad2[i].dx /= N2; grad2[i].dy /= N2;
+            grad2[i].dx /= N2;
+            grad2[i].dy /= N2;
 
             // Unrotated gradients for XBeforeY 2D
             double xx = grad2[i].dx * 0.7071067811865476;
@@ -850,76 +910,78 @@ public class OpenSimplex2F {
         GRADIENTS_3D_XY_BEFORE_Z = new Grad3[PSIZE];
         GRADIENTS_3D_XZ_BEFORE_Y = new Grad3[PSIZE];
         Grad3[] grad3 = {
-                new Grad3(-2.22474487139,      -2.22474487139,      -1.0),
-                new Grad3(-2.22474487139,      -2.22474487139,       1.0),
-                new Grad3(-3.0862664687972017, -1.1721513422464978,  0.0),
-                new Grad3(-1.1721513422464978, -3.0862664687972017,  0.0),
-                new Grad3(-2.22474487139,      -1.0,                -2.22474487139),
-                new Grad3(-2.22474487139,       1.0,                -2.22474487139),
-                new Grad3(-1.1721513422464978,  0.0,                -3.0862664687972017),
-                new Grad3(-3.0862664687972017,  0.0,                -1.1721513422464978),
-                new Grad3(-2.22474487139,      -1.0,                 2.22474487139),
-                new Grad3(-2.22474487139,       1.0,                 2.22474487139),
-                new Grad3(-3.0862664687972017,  0.0,                 1.1721513422464978),
-                new Grad3(-1.1721513422464978,  0.0,                 3.0862664687972017),
-                new Grad3(-2.22474487139,       2.22474487139,      -1.0),
-                new Grad3(-2.22474487139,       2.22474487139,       1.0),
-                new Grad3(-1.1721513422464978,  3.0862664687972017,  0.0),
-                new Grad3(-3.0862664687972017,  1.1721513422464978,  0.0),
-                new Grad3(-1.0,                -2.22474487139,      -2.22474487139),
-                new Grad3( 1.0,                -2.22474487139,      -2.22474487139),
-                new Grad3( 0.0,                -3.0862664687972017, -1.1721513422464978),
-                new Grad3( 0.0,                -1.1721513422464978, -3.0862664687972017),
-                new Grad3(-1.0,                -2.22474487139,       2.22474487139),
-                new Grad3( 1.0,                -2.22474487139,       2.22474487139),
-                new Grad3( 0.0,                -1.1721513422464978,  3.0862664687972017),
-                new Grad3( 0.0,                -3.0862664687972017,  1.1721513422464978),
-                new Grad3(-1.0,                 2.22474487139,      -2.22474487139),
-                new Grad3( 1.0,                 2.22474487139,      -2.22474487139),
-                new Grad3( 0.0,                 1.1721513422464978, -3.0862664687972017),
-                new Grad3( 0.0,                 3.0862664687972017, -1.1721513422464978),
-                new Grad3(-1.0,                 2.22474487139,       2.22474487139),
-                new Grad3( 1.0,                 2.22474487139,       2.22474487139),
-                new Grad3( 0.0,                 3.0862664687972017,  1.1721513422464978),
-                new Grad3( 0.0,                 1.1721513422464978,  3.0862664687972017),
-                new Grad3( 2.22474487139,      -2.22474487139,      -1.0),
-                new Grad3( 2.22474487139,      -2.22474487139,       1.0),
-                new Grad3( 1.1721513422464978, -3.0862664687972017,  0.0),
-                new Grad3( 3.0862664687972017, -1.1721513422464978,  0.0),
-                new Grad3( 2.22474487139,      -1.0,                -2.22474487139),
-                new Grad3( 2.22474487139,       1.0,                -2.22474487139),
-                new Grad3( 3.0862664687972017,  0.0,                -1.1721513422464978),
-                new Grad3( 1.1721513422464978,  0.0,                -3.0862664687972017),
-                new Grad3( 2.22474487139,      -1.0,                 2.22474487139),
-                new Grad3( 2.22474487139,       1.0,                 2.22474487139),
-                new Grad3( 1.1721513422464978,  0.0,                 3.0862664687972017),
-                new Grad3( 3.0862664687972017,  0.0,                 1.1721513422464978),
-                new Grad3( 2.22474487139,       2.22474487139,      -1.0),
-                new Grad3( 2.22474487139,       2.22474487139,       1.0),
-                new Grad3( 3.0862664687972017,  1.1721513422464978,  0.0),
-                new Grad3( 1.1721513422464978,  3.0862664687972017,  0.0)
+                new Grad3(-2.22474487139, -2.22474487139, -1.0),
+                new Grad3(-2.22474487139, -2.22474487139, 1.0),
+                new Grad3(-3.0862664687972017, -1.1721513422464978, 0.0),
+                new Grad3(-1.1721513422464978, -3.0862664687972017, 0.0),
+                new Grad3(-2.22474487139, -1.0, -2.22474487139),
+                new Grad3(-2.22474487139, 1.0, -2.22474487139),
+                new Grad3(-1.1721513422464978, 0.0, -3.0862664687972017),
+                new Grad3(-3.0862664687972017, 0.0, -1.1721513422464978),
+                new Grad3(-2.22474487139, -1.0, 2.22474487139),
+                new Grad3(-2.22474487139, 1.0, 2.22474487139),
+                new Grad3(-3.0862664687972017, 0.0, 1.1721513422464978),
+                new Grad3(-1.1721513422464978, 0.0, 3.0862664687972017),
+                new Grad3(-2.22474487139, 2.22474487139, -1.0),
+                new Grad3(-2.22474487139, 2.22474487139, 1.0),
+                new Grad3(-1.1721513422464978, 3.0862664687972017, 0.0),
+                new Grad3(-3.0862664687972017, 1.1721513422464978, 0.0),
+                new Grad3(-1.0, -2.22474487139, -2.22474487139),
+                new Grad3(1.0, -2.22474487139, -2.22474487139),
+                new Grad3(0.0, -3.0862664687972017, -1.1721513422464978),
+                new Grad3(0.0, -1.1721513422464978, -3.0862664687972017),
+                new Grad3(-1.0, -2.22474487139, 2.22474487139),
+                new Grad3(1.0, -2.22474487139, 2.22474487139),
+                new Grad3(0.0, -1.1721513422464978, 3.0862664687972017),
+                new Grad3(0.0, -3.0862664687972017, 1.1721513422464978),
+                new Grad3(-1.0, 2.22474487139, -2.22474487139),
+                new Grad3(1.0, 2.22474487139, -2.22474487139),
+                new Grad3(0.0, 1.1721513422464978, -3.0862664687972017),
+                new Grad3(0.0, 3.0862664687972017, -1.1721513422464978),
+                new Grad3(-1.0, 2.22474487139, 2.22474487139),
+                new Grad3(1.0, 2.22474487139, 2.22474487139),
+                new Grad3(0.0, 3.0862664687972017, 1.1721513422464978),
+                new Grad3(0.0, 1.1721513422464978, 3.0862664687972017),
+                new Grad3(2.22474487139, -2.22474487139, -1.0),
+                new Grad3(2.22474487139, -2.22474487139, 1.0),
+                new Grad3(1.1721513422464978, -3.0862664687972017, 0.0),
+                new Grad3(3.0862664687972017, -1.1721513422464978, 0.0),
+                new Grad3(2.22474487139, -1.0, -2.22474487139),
+                new Grad3(2.22474487139, 1.0, -2.22474487139),
+                new Grad3(3.0862664687972017, 0.0, -1.1721513422464978),
+                new Grad3(1.1721513422464978, 0.0, -3.0862664687972017),
+                new Grad3(2.22474487139, -1.0, 2.22474487139),
+                new Grad3(2.22474487139, 1.0, 2.22474487139),
+                new Grad3(1.1721513422464978, 0.0, 3.0862664687972017),
+                new Grad3(3.0862664687972017, 0.0, 1.1721513422464978),
+                new Grad3(2.22474487139, 2.22474487139, -1.0),
+                new Grad3(2.22474487139, 2.22474487139, 1.0),
+                new Grad3(3.0862664687972017, 1.1721513422464978, 0.0),
+                new Grad3(1.1721513422464978, 3.0862664687972017, 0.0)
         };
         Grad3[] grad3Classic = new Grad3[grad3.length];
         Grad3[] grad3XYBeforeZ = new Grad3[grad3.length];
         Grad3[] grad3XZBeforeY = new Grad3[grad3.length];
         for (int i = 0; i < grad3.length; i++) {
-            grad3[i].dx /= N3; grad3[i].dy /= N3; grad3[i].dz /= N3;
+            grad3[i].dx /= N3;
+            grad3[i].dy /= N3;
+            grad3[i].dz /= N3;
             double gxr = grad3[i].dx, gyr = grad3[i].dy, gzr = grad3[i].dz;
 
             // Unrotated gradients for classic 3D
             double grr = (2.0 / 3.0) * (gxr + gyr + gzr);
             double dx = grr - gxr, dy = grr - gyr, dz = grr - gzr;
-            grad3Classic[i] = new Grad3( grr - gxr, grr - gyr, grr - gzr );
+            grad3Classic[i] = new Grad3(grr - gxr, grr - gyr, grr - gzr);
 
             // Unrotated gradients for XYBeforeZ 3D
             double s2 = (gxr + gyr) * -0.211324865405187;
             double zz = gzr * 0.577350269189626;
-            grad3XYBeforeZ[i] = new Grad3( gxr + s2 + zz, gyr + s2 + zz, (gzr - gxr - gyr) * 0.577350269189626 );
+            grad3XYBeforeZ[i] = new Grad3(gxr + s2 + zz, gyr + s2 + zz, (gzr - gxr - gyr) * 0.577350269189626);
 
             // Unrotated gradients for plane-first 3D
             s2 = (gxr + gzr) * -0.211324865405187;
             double yy = gyr * 0.577350269189626;
-            grad3XZBeforeY[i] = new Grad3( gxr + s2 + yy, (gyr - gxr - gzr) * 0.577350269189626, gzr + s2 + yy );
+            grad3XZBeforeY[i] = new Grad3(gxr + s2 + yy, (gyr - gxr - gzr) * 0.577350269189626, gzr + s2 + yy);
         }
         for (int i = 0; i < PSIZE; i++) {
             GRADIENTS_3D[i] = grad3[i % grad3.length];

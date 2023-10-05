@@ -1,13 +1,11 @@
 package com.mygdx.mygame.terrain;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public class CombineIslandandWeather {
-    public static void combine(BufferedImage weather, BufferedImage island,Graphics g) throws IOException {
+    public static void combine(BufferedImage weather, BufferedImage island, Graphics g) throws IOException {
         /*int c=0;
         for(int i=0 ; i<island.getHeight() ; i++) {
             BufferedImage ic=MyCanvas.deepCopy(island);
