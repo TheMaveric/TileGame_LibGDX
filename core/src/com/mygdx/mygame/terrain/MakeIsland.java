@@ -20,7 +20,7 @@ by the first file to call the function*/
 class MakeIsland {
   /*static SecureRandom random = new SecureRandom();
   static OpenSimplex2F n=new OpenSimplex2F(random.nextInt(10000));*/
-  public static OpenSimplex2F n = new OpenSimplex2F(0);
+  public static OpenSimplex2F n = new OpenSimplex2F(1500);
 
   public static double sumOctaves(
       int numberOfIterations, int x, int y, double persistence, double scale, int low, int high) {
@@ -47,7 +47,7 @@ class MakeIsland {
         opennoise[j][i] = sumOctaves(16, i + x, j + y, 0.5, scale, 0, 255);
       }
     }
-    greyWriteImage(opennoise, name);
+    //greyWriteImage(opennoise, name);
     return opennoise;
   }
 

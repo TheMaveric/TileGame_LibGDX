@@ -36,7 +36,7 @@ public class Terrain implements Runnable {
               0.0001,
               0,
               100,
-              5000,
+              20000,
               x,
               y); // make humidity noise profile
     } else if (Thread.currentThread().getName().equals("TEMPERATURE")) {
@@ -48,11 +48,11 @@ public class Terrain implements Runnable {
               0.0001,
               0,
               100,
-              1,
+              15,
               x,
               y); // make temperature noise profile
     } else if (Thread.currentThread().getName().equals("RIVER")) {
-      riverArr = RiverGeneration.init(width, height, "River Noise", 0.002, 0, x, y);
+      riverArr = RiverGeneration.init(width, height, "River Noise", 0.002, 5, x, y);
     }
   }
 
@@ -143,8 +143,7 @@ public class Terrain implements Runnable {
     Thread t4 = new Thread(r4);
     t4.setName("RIVER");
     t4.start();
-    while (t1.isAlive() || t2.isAlive() || t3.isAlive() || t4.isAlive())
-      ;
+    while (t1.isAlive() || t2.isAlive() || t3.isAlive() || t4.isAlive());
     islandArr = r1.getArr();
     humidity = r2.getArr();
     temperature = r3.getArr();

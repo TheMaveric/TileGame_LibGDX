@@ -4,7 +4,7 @@ import com.mygdx.mygame.terrain.Terrain;
 import com.mygdx.mygame.textures.Tile;
 
 public class Chunk {
-    public String chunkFinder(float x,float y)
+    public String chunkFinder(double x,double y)
     {
         int xChunk=(int)x/(Terrain.width*Tile.TILEWIDTH);
         int yChunk=(int)y/(Terrain.height*Tile.TILEHEIGHT);

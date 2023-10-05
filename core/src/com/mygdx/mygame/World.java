@@ -25,7 +25,7 @@ public class World {
   // Tiles
   TileTexture texture = new TileTexture();
   // World values
-  private float spawnX, spawnY;
+  private double spawnX, spawnY;
   private int ChunkX, ChunkY;
   static String tileNameCurr = "";
   // Chunk
@@ -76,13 +76,13 @@ public class World {
       String saveGame = readSave(save);
       String arr[] = saveGame.replace("[", "").replace("]", "").split(",");
       System.out.println(
-          Float.parseFloat(arr[0])
+          Double.parseDouble(arr[0])
               + "+"
-              + Float.parseFloat(arr[1])
+              + Double.parseDouble(arr[1])
               + "+"
-              + Float.parseFloat(arr[2])
+              + Double.parseDouble(arr[2])
               + "+"
-              + Float.parseFloat(arr[3]));
+              + Double.parseDouble(arr[3]));
       Vector2 pt = new Vector2(Float.parseFloat(arr[0]), Float.parseFloat(arr[1]));
       player.setBoundingBox(
           new Rectangle(pt.x, pt.y, Float.parseFloat(arr[2]), Float.parseFloat(arr[3])));
@@ -243,7 +243,7 @@ public class World {
     }
   }
 
-  public void update(Batch batch, float deltaTime) {
+  public void update(Batch batch, double deltaTime) {
     chunkChange();
     // getTile(player.boundingBox.x-player.boundingBox.width,player.boundingBox.y-player.boundingBox.height);
     /*if(getTile(player.boundingBox.x,player.boundingBox.y) ||
@@ -386,7 +386,7 @@ public class World {
     }
   }
 
-  public void render(Batch batch, float deltaTime) {
+  public void render(Batch batch, double deltaTime) {
     int paddingX = 4 * Tile.TILEWIDTH;
     int paddingY = 4 * Tile.TILEHEIGHT;
     int factor = 12;
@@ -407,7 +407,7 @@ public class World {
             // batch.draw(texture.map.get(tileIndex), (int)(x + k) * Tile.TILEWIDTH,(int)(y + j) *
             // Tile.TILEHEIGHT);
             Vector2 pt = new Vector2((x + k) * Tile.TILEWIDTH, (y + j) * Tile.TILEHEIGHT);
-            batch.draw(texture.map.get(tileIndex), pt.x, (float) (pt.y));
+            batch.draw(texture.map.get(tileIndex), pt.x, pt.y);
             renderWave(l, j, k, tileIndex, x, y);
           }
         }
@@ -529,7 +529,7 @@ public class World {
   {
       return this;
   }*/
-  boolean getTile(float x, float y) {
+  boolean getTile(double x, double y) {
     // Chunk
     int xChunk = (int) x / (Terrain.width * Tile.TILEWIDTH);
     int yChunk = (int) y / (Terrain.height * Tile.TILEHEIGHT);
